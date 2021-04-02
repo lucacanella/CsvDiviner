@@ -1,0 +1,177 @@
+[
+  {
+    "index": 0,
+    "header": "mixed",
+    "maxStrLen": 14,
+    "minStrLen": 1,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": false,
+    "containsIntegers": true,
+    "containsDate": true,
+    "containsDateTime": false,
+    "containsOtherValues": true,
+    "Strings": [
+      "This is a test",
+      "Another test",
+      "Test 1"
+    ],
+    "Integers": [
+      "2"
+    ],
+    "Floats": [],
+    "Dates": [
+      "2020-05-12"
+    ],
+    "Datetimes": [],
+    "samplesCount": 5,
+    "analysisFinalized": true
+  },
+  {
+    "index": 1,
+    "header": "enum",
+    "maxStrLen": 1,
+    "minStrLen": 1,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": false,
+    "containsIntegers": false,
+    "containsDate": false,
+    "containsDateTime": false,
+    "containsOtherValues": true,
+    "Strings": [
+      "A",
+      "B",
+      "C"
+    ],
+    "Integers": [],
+    "Floats": [],
+    "Dates": [],
+    "Datetimes": [],
+    "samplesCount": 3,
+    "analysisFinalized": true
+  },
+  {
+    "index": 2,
+    "header": "integer",
+    "maxStrLen": 1,
+    "minStrLen": 1,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": false,
+    "containsIntegers": true,
+    "containsDate": false,
+    "containsDateTime": false,
+    "containsOtherValues": false,
+    "Strings": [],
+    "Integers": [
+      "1"
+    ],
+    "Floats": [],
+    "Dates": [],
+    "Datetimes": [],
+    "samplesCount": 1,
+    "analysisFinalized": true
+  },
+  {
+    "index": 3,
+    "header": "date",
+    "maxStrLen": 10,
+    "minStrLen": 10,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": false,
+    "containsIntegers": false,
+    "containsDate": true,
+    "containsDateTime": false,
+    "containsOtherValues": false,
+    "Strings": [],
+    "Integers": [],
+    "Floats": [],
+    "Dates": [
+      "2020-09-08",
+      "2020-01-02",
+      "2020-03-25",
+      "2020-12-01",
+      "2020-04-30"
+    ],
+    "Datetimes": [],
+    "samplesCount": 5,
+    "analysisFinalized": true
+  },
+  {
+    "index": 4,
+    "header": "datetime",
+    "maxStrLen": 23,
+    "minStrLen": 23,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": false,
+    "containsIntegers": false,
+    "containsDate": false,
+    "containsDateTime": true,
+    "containsOtherValues": false,
+    "Strings": [],
+    "Integers": [],
+    "Floats": [],
+    "Dates": [],
+    "Datetimes": [
+      "2020-01-02T12:50:00.135",
+      "2020-01-02T13:50:00.135",
+      "2020-01-02T10:50:00.135",
+      "2020-01-02T11:50:00.135",
+      "2020-01-02T14:50:00.135"
+    ],
+    "samplesCount": 5,
+    "analysisFinalized": true
+  },
+  {
+    "index": 5,
+    "header": "boolean",
+    "maxStrLen": 1,
+    "minStrLen": 1,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": false,
+    "containsIntegers": true,
+    "containsDate": false,
+    "containsDateTime": false,
+    "containsOtherValues": false,
+    "Strings": [],
+    "Integers": [
+      "0",
+      "1"
+    ],
+    "Floats": [],
+    "Dates": [],
+    "Datetimes": [],
+    "samplesCount": 2,
+    "analysisFinalized": true
+  },
+  {
+    "index": 6,
+    "header": "float",
+    "maxStrLen": 8,
+    "minStrLen": 4,
+    "hasValues": true,
+    "hasNulls": false,
+    "containsFloats": true,
+    "containsIntegers": false,
+    "containsDate": false,
+    "containsDateTime": false,
+    "containsOtherValues": false,
+    "Strings": [],
+    "Integers": [],
+    "Floats": [
+      "12.4",
+      "10.4",
+      "10.40",
+      "13.45987",
+      "15.4887"
+    ],
+    "Dates": [],
+    "Datetimes": [],
+    "samplesCount": 5,
+    "analysisFinalized": true
+  }
+]

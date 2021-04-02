@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CsvDiviner:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cddb7430-f634-43f1-9bd2-8e85a5e61c70" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1qKfm56YaZ4O6KjbIoVBP1tR7eF" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.lucacanella.csvdiviner" />
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.lucacanella.csvdiviner.Core.FieldTypeSuggestors" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thund\IdeaProjects\CsvDiviner\src\main\resources\META-INF" />
+      <recent name="C:\Users\thund\IdeaProjects\CsvDiviner\src\main\resources" />
+      <recent name="C:\Users\thund\IdeaProjects\csvdiviner1" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main - Version">
+    <configuration name="Main - Version" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <module name="CsvDiviner" />
+      <option name="PROGRAM_PARAMETERS" value="--version -h" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main - big file" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <module name="CsvDiviner" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv&quot; -l WARNING -o &quot;C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv.json&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main - other files" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <module name="CsvDiviner" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;C:\Users\thund\Downloads\semicolon_test.csv&quot; -l INFO -s &quot;;&quot; -v -t LF -q \&quot; -o &quot;C:\Users\thund\Downloads\semicolon_test.csv.json&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main Verbose" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <module name="CsvDiviner" />
+      <option name="PROGRAM_PARAMETERS" value="resources/input_file_example.csv -b 1 -w 3 -l INFO" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <module name="CsvDiviner" />
+      <option name="PROGRAM_PARAMETERS" value="resources/input_file_example.csv -b 1 -w 3 -l ERROR -o resources/output_example.json" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main Verbose" />
+      <item itemvalue="Application.Main - other files" />
+      <item itemvalue="Application.Main - Version" />
+      <item itemvalue="Application.Main - big file" />
+      <item itemvalue="Application.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cddb7430-f634-43f1-9bd2-8e85a5e61c70" name="Default Changelist" comment="" />
+      <created>1616833357537</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616833357537</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/ReaderThread.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/csvdiviner$Main___other_files.ic" NAME="Main - other files Coverage Results" MODIFIED="1617007888668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.lucacanella.csvdiviner.*</FILTER>
+    </SUITE>
+  </component>
+</project>
