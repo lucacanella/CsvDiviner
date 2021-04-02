@@ -1,4 +1,4 @@
-package org.lucacanella.csvdiviner.Core;
+package org.lucacanella.tablediviner.Core;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 
-public class CsvDiviner {
+public class TableDiviner {
 
     private String encoding;
 
@@ -78,23 +78,23 @@ public class CsvDiviner {
 
     private CsvParserSettings parserSettings;
 
-    public CsvDiviner(char separator) {
+    public TableDiviner(char separator) {
         this(separator, '"');
     }
 
-    public CsvDiviner(char separator, char quoteChar) {
+    public TableDiviner(char separator, char quoteChar) {
         this(separator, quoteChar, '\\');
     }
 
-    public CsvDiviner(char separator, char quoteChar, char escapeChar) {
+    public TableDiviner(char separator, char quoteChar, char escapeChar) {
         this(separator, quoteChar, escapeChar, "UTF-8", 5000, 7);
     }
 
-    public CsvDiviner(char separator, char quoteChar, char escapeChar, String encoding) {
+    public TableDiviner(char separator, char quoteChar, char escapeChar, String encoding) {
         this(separator, quoteChar, escapeChar, encoding, 5000, 7);
     }
 
-    public CsvDiviner(char separator, char quoteChar, char escapeChar, String encoding, int batchSize, int workersCount) {
+    public TableDiviner(char separator, char quoteChar, char escapeChar, String encoding, int batchSize, int workersCount) {
         this.separator = separator;
         this.quoteChar = quoteChar;
         this.batchSize = batchSize;

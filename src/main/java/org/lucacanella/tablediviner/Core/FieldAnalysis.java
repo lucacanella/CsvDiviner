@@ -1,4 +1,4 @@
-package org.lucacanella.csvdiviner.Core;
+package org.lucacanella.tablediviner.Core;
 
 import java.util.HashSet;
 import java.util.LinkedList;

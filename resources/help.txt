@@ -1,3 +1,3 @@
-java CsvDiviner.jar input_file_path -b 4000 -w 7 -l WARNING -o output_file_path
+java TableDiviner.jar input_file_path -b 4000 -w 7 -l WARNING -o output_file_path
 
-&'C:\Program Files\Java\jdk-11.0.1\bin\java.exe' -jar .\CsvDiviner.jar "C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv" -o "C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv.json"
+&'C:\Program Files\Java\jdk-11.0.1\bin\java.exe' -jar .\TableDiviner.jar "C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv" -o "C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv.json"

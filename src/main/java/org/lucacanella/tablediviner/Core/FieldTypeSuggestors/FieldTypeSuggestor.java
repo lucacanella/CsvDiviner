@@ -1,6 +1,6 @@
-package org.lucacanella.csvdiviner.Core.FieldTypeSuggestors;
+package org.lucacanella.tablediviner.Core.FieldTypeSuggestors;
 
-import org.lucacanella.csvdiviner.Core.FieldAnalysis;
+import org.lucacanella.tablediviner.Core.FieldAnalysis;
 
 public abstract class FieldTypeSuggestor {
 

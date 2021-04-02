@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.lucacanella</groupId>
-    <artifactId>csvdiviner</artifactId>
+    <artifactId>tablediviner</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -52,7 +52,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>org.lucacanella.csvdiviner.Main</mainClass>
+                            <mainClass>org.lucacanella.tablediviner.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

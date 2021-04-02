@@ -1,6 +1,7 @@
-package org.lucacanella.csvdiviner;
+package org.lucacanella.tablediviner;
 
-import org.lucacanella.csvdiviner.Core.CsvDiviner;
+import org.lucacanella.tablediviner.Core.TableDiviner;
+
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class MainOld {
 
     public static final String VERSION = "0.1b";
 
@@ -58,15 +59,15 @@ public class Main {
     private boolean silentMode = false;
 
     public static void main(String[] args) {
-        var main = new Main();
+        var main = new MainOld();
         JCommander command = JCommander.newBuilder()
                 .addObject(main)
                 .build();
         command.parse(args);
 
         if(main.versionMode) {
-            System.out.format("CsvDiviner versione: %s%sCli Versione: %s%s",
-                    CsvDiviner.VERSION, System.lineSeparator(), Main.VERSION, System.lineSeparator());
+            System.out.format("TableDiviner versione: %s%sCli Versione: %s%s",
+                    TableDiviner.VERSION, System.lineSeparator(), MainOld.VERSION, System.lineSeparator());
         }
 
         if(main.separator.length() != 1) {
@@ -84,7 +85,7 @@ public class Main {
             if(!main.silentMode) {
                 System.out.format("Input file: %s%s", inputFilePath, System.lineSeparator());
             }
-            CsvDiviner diviner = new CsvDiviner(
+            TableDiviner diviner = new TableDiviner(
                     main.separator.charAt(0),
                     main.quoteChar.charAt(0),
                     main.escapeChar.charAt(0),
@@ -102,7 +103,7 @@ public class Main {
             if(main.verboseMode) {
                 System.out.format("Csv parser settings: %s%s", diviner.getCsvParserSettings(), System.lineSeparator());
             }
-            diviner.setLoggerState(CsvDiviner.LoggerState.valueOf(main.loggerState));
+            diviner.setLoggerState(TableDiviner.LoggerState.valueOf(main.loggerState));
             diviner.evaluateFile(inputFilePath);
             if(main.outputFilePath != null) {
                 BufferedWriter writer = null;

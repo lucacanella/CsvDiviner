@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CsvDiviner" />
+        <module name="tablediviner" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tablediviner" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
