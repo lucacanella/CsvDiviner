@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_72.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_univocity_univocity_parsers_2_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/DivinerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tablediviner.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CsvDiviner.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CsvDiviner_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CsvDiviner.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/help.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/help.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/TableDiviner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/EvaluatorThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/EvaluatorThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/ReaderThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/ReaderThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/MainOld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/TableDiviner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/TableDiviner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/MainOld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/MainCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +35,10 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1qcJvbFz1rlPiHmlKjXGI51uRZH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
@@ -64,19 +50,7 @@
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.Main --version">
+  <component name="RunManager" selected="Application.MainCLI --version">
     <configuration name="Main --version" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.tablediviner.Main" />
       <module name="tablediviner" />
@@ -91,9 +65,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main --w Wizard" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.tablediviner.Main" />
       <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="-w" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.tablediviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI --version" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.tablediviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="--version" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.tablediviner.*" />
@@ -106,14 +95,16 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main --version" />
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MainCLI --version" />
+      <item itemvalue="Application.Main --w Wizard" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main --w Wizard" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -137,5 +128,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

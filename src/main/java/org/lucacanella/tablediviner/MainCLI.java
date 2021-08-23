@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainOld {
+public class MainCLI {
 
-    public static final String VERSION = "0.1b";
+    public static final String VERSION = "0.2";
 
     @Parameter(description = "input_file")
     private List<String> inputFilePath = new ArrayList<>();
@@ -59,7 +59,7 @@ public class MainOld {
     private boolean silentMode = false;
 
     public static void main(String[] args) {
-        var main = new MainOld();
+        var main = new MainCLI();
         JCommander command = JCommander.newBuilder()
                 .addObject(main)
                 .build();
@@ -67,7 +67,7 @@ public class MainOld {
 
         if(main.versionMode) {
             System.out.format("TableDiviner versione: %s%sCli Versione: %s%s",
-                    TableDiviner.VERSION, System.lineSeparator(), MainOld.VERSION, System.lineSeparator());
+                    TableDiviner.VERSION, System.lineSeparator(), MainCLI.VERSION, System.lineSeparator());
         }
 
         if(main.separator.length() != 1) {

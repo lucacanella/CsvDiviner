@@ -33,20 +33,7 @@ public class TableDiviner {
         }
     }
 
-    private enum DownloadType {
-        AUDIO(1), VIDEO(2), AUDIO_AND_VIDEO(3);
-        private final int value;
-
-        private DownloadType(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
-    public static final String VERSION = "0.1b";
+    public static final String VERSION = "0.2";
 
     private LoggerState loggerState = LoggerState.ERROR;
 
