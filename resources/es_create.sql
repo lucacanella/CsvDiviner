@@ -4,8 +4,7 @@ INSERT INTO tabella (
 	, testo       
 	, nullabileint
 	, unadataora  
-	, convirgola  
-  
+	, convirgola 
 )
 (
 	SELECT CAST(longnum AS BIGINT)
