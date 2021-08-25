@@ -13,7 +13,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 @Parameters(resourceBundle = "MainMessages")
-public class Main {
+public class MainWizard {
 
     public static final String VERSION = "0.1b";
 
@@ -94,11 +94,11 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        Locale currentLocale = new Locale(Main.DEFAULT_LOCALE, Main.DEFAULT_COUNTRY);
+        Locale currentLocale = new Locale(MainWizard.DEFAULT_LOCALE, MainWizard.DEFAULT_COUNTRY);
         ResourceBundle messages =
                 ResourceBundle.getBundle("MainMessages",currentLocale);
 
-        var main = new Main();
+        var main = new MainWizard();
         JCommander command = JCommander.newBuilder()
                 .addObject(main)
                 .build();
@@ -106,7 +106,7 @@ public class Main {
 
         if(main.versionMode) {
             outFormat(messages.getString("VersionMessageTmpl"),
-                    CsvDiviner.VERSION, System.lineSeparator(), Main.VERSION, System.lineSeparator());
+                    CsvDiviner.VERSION, System.lineSeparator(), MainWizard.VERSION, System.lineSeparator());
         } else if(!main.silentMode && null != main.configfile) {
             outFormatNL(messages.getString("ConfigFileInfoTmpl"), main.configfile);
         } else if(main.helpUsage || (!main.configureMode && null == main.configfile)) {

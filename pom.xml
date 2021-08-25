@@ -52,7 +52,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>org.lucacanella.csvdiviner.Main</mainClass>
+                            <mainClass>org.lucacanella.csvdiviner.MainWizard</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

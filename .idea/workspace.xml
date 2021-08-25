@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/help.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/help.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/DivinerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DivinerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/EvaluatorThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/EvaluatorThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/ReaderThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/ReaderThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Core/TableDiviner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/tablediviner/MainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +49,7 @@
   </component>
   <component name="RunManager" selected="Application.MainCLI --version">
     <configuration name="Main --version" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
       <module name="tablediviner" />
       <option name="PROGRAM_PARAMETERS" value="-v" />
       <extension name="coverage">
@@ -75,7 +63,7 @@
       </method>
     </configuration>
     <configuration name="Main --w Wizard" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.Main" />
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
       <module name="tablediviner" />
       <option name="PROGRAM_PARAMETERS" value="-w" />
       <extension name="coverage">

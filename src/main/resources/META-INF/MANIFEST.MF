@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: org.lucacanella.csvdiviner.Main
+Main-Class: org.lucacanella.csvdiviner.MainWizard
