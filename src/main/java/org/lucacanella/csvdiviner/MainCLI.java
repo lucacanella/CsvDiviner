@@ -1,6 +1,6 @@
-package org.lucacanella.tablediviner;
+package org.lucacanella.csvdiviner;
 
-import org.lucacanella.tablediviner.Core.TableDiviner;
+import org.lucacanella.csvdiviner.Core.CsvDiviner;
 
 
 import com.beust.jcommander.JCommander;
@@ -66,8 +66,8 @@ public class MainCLI {
         command.parse(args);
 
         if(main.versionMode) {
-            System.out.format("TableDiviner versione: %s%sCli Versione: %s%s",
-                    TableDiviner.VERSION, System.lineSeparator(), MainCLI.VERSION, System.lineSeparator());
+            System.out.format("CsvDiviner versione: %s%sCli Versione: %s%s",
+                    CsvDiviner.VERSION, System.lineSeparator(), MainCLI.VERSION, System.lineSeparator());
         }
 
         if(main.separator.length() != 1) {
@@ -85,7 +85,7 @@ public class MainCLI {
             if(!main.silentMode) {
                 System.out.format("Input file: %s%s", inputFilePath, System.lineSeparator());
             }
-            TableDiviner diviner = new TableDiviner(
+            CsvDiviner diviner = new CsvDiviner(
                     main.separator.charAt(0),
                     main.quoteChar.charAt(0),
                     main.escapeChar.charAt(0),
@@ -103,7 +103,7 @@ public class MainCLI {
             if(main.verboseMode) {
                 System.out.format("Csv parser settings: %s%s", diviner.getCsvParserSettings(), System.lineSeparator());
             }
-            diviner.setLoggerState(TableDiviner.LoggerState.valueOf(main.loggerState));
+            diviner.setLoggerState(CsvDiviner.LoggerState.valueOf(main.loggerState));
             diviner.evaluateFile(inputFilePath);
             if(main.outputFilePath != null) {
                 BufferedWriter writer = null;

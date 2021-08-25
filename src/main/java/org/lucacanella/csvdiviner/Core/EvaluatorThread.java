@@ -1,4 +1,4 @@
-package org.lucacanella.tablediviner.Core;
+package org.lucacanella.csvdiviner.Core;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -14,7 +14,7 @@ class EvaluatorThread implements Runnable {
     FieldAnalysis[] fields;
     int fieldsCount;
 
-    TableDiviner parent;
+    CsvDiviner parent;
 
     private int batchSize;
     private int workersCount;
@@ -35,7 +35,7 @@ class EvaluatorThread implements Runnable {
 
     int currentRowOffset;
 
-    public EvaluatorThread(int idx, TableDiviner parent, String[] headers) {
+    public EvaluatorThread(int idx, CsvDiviner parent, String[] headers) {
         this.currentRowOffset = 0;
         this.trimWhitespace = true;
         this.idx = idx;

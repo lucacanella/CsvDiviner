@@ -1,21 +1,14 @@
-package org.lucacanella.tablediviner;
+package org.lucacanella.csvdiviner;
 
 import com.beust.jcommander.Parameters;
-import com.univocity.parsers.csv.Csv;
-import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
-import com.univocity.parsers.tsv.TsvParser;
-import com.univocity.parsers.tsv.TsvParserSettings;
-import org.lucacanella.tablediviner.Core.TableDiviner;
+import org.lucacanella.csvdiviner.Core.CsvDiviner;
 
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -113,7 +106,7 @@ public class Main {
 
         if(main.versionMode) {
             outFormat(messages.getString("VersionMessageTmpl"),
-                    TableDiviner.VERSION, System.lineSeparator(), Main.VERSION, System.lineSeparator());
+                    CsvDiviner.VERSION, System.lineSeparator(), Main.VERSION, System.lineSeparator());
         } else if(!main.silentMode && null != main.configfile) {
             outFormatNL(messages.getString("ConfigFileInfoTmpl"), main.configfile);
         } else if(main.helpUsage || (!main.configureMode && null == main.configfile)) {

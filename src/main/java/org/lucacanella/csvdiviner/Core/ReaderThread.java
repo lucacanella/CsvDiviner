@@ -1,4 +1,4 @@
-package org.lucacanella.tablediviner.Core;
+package org.lucacanella.csvdiviner.Core;
 
 import com.univocity.parsers.csv.CsvParser;
 
@@ -10,7 +10,7 @@ class ReaderThread implements Runnable {
 
     EvaluatorThread[] evths;
 
-    TableDiviner parent;
+    CsvDiviner parent;
 
     AtomicBoolean abort;
 
@@ -19,7 +19,7 @@ class ReaderThread implements Runnable {
     private int batchSize;
     private int workersCount;
 
-    public ReaderThread(TableDiviner parent, CsvParser csvParser, EvaluatorThread[] evths) {
+    public ReaderThread(CsvDiviner parent, CsvParser csvParser, EvaluatorThread[] evths) {
         this.parent = parent;
         this.csvParser = csvParser;
         this.evths = evths;
