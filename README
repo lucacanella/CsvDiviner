@@ -31,7 +31,7 @@ Usage: <main class> [options] input_file
     -t, --line-terminator
       Sets the line terminator (options are 'LF' or 'CRLF').
     -l, --logger
-      Set logger level (OFF|INFO|WARN|ERROR).
+      Set logger level (OFF|INFO|WARNING|ERROR).
       Default: ERROR
     -o, --output
       If set, writes analysis json result in a file at the given path.
