@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainCLI {
 
@@ -19,7 +20,7 @@ public class MainCLI {
     @Parameter(description = "input_file")
     private List<String> inputFilePath = new ArrayList<>();
 
-    @Parameter(names = { "-l", "--logger" }, description = "Set logger level (OFF|INFO|WARN|ERROR).")
+    @Parameter(names = { "-l", "--logger" }, description = "Set logger level (OFF|INFO|WARNING|ERROR).")
     private String loggerState = "ERROR";
 
     @Parameter(names = { "-h", "--help-usage" }, description = "Print help.")
@@ -123,7 +124,12 @@ public class MainCLI {
                 System.out.println(diviner.getFieldTypesJson());
             }
             if(!main.silentMode) {
-                System.out.format("%,d righe analizzate nel file%s", diviner.getRowCount(), System.lineSeparator());
+                long elapsedMillis = TimeUnit.NANOSECONDS.toMillis(diviner.getElapsedNanotime());
+                Runtime rt = Runtime.getRuntime();
+                long totalMemoryMB = rt.totalMemory() / (1024 * 1024);
+                long memoryUsedMB = (rt.totalMemory() - rt.freeMemory()) / (1024 * 1024);
+                System.out.format("%,d righe analizzate in %d ms (%d/%d Mb ram utilizzati)%s",
+                        diviner.getRowCount(), elapsedMillis, memoryUsedMB, totalMemoryMB, System.lineSeparator());
             }
         }
 

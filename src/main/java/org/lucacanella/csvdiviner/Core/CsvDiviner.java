@@ -15,6 +15,7 @@ import com.univocity.parsers.csv.CsvParserSettings;
 public class CsvDiviner {
 
     private String encoding;
+    private long elapsedNanotime;
 
     public enum LoggerState {
         OFF(4),
@@ -94,6 +95,8 @@ public class CsvDiviner {
         parserSettings.getFormat().setDelimiter(separator);
         parserSettings.getFormat().setQuote(quoteChar);
         parserSettings.getFormat().setQuoteEscape(escapeChar);
+
+        elapsedNanotime = 0;
     }
 
     public void setTrimWhitespace(boolean trimWhitespace) {
@@ -102,6 +105,10 @@ public class CsvDiviner {
 
     public String getHeaders() {
         return outHeaders;
+    }
+
+    public long getElapsedNanotime() {
+        return elapsedNanotime;
     }
 
     public Integer getRowCount() {
@@ -129,6 +136,7 @@ public class CsvDiviner {
         Path inputPath = Paths.get(filePathStr);
 
         try {
+            long evaluateStart = System.nanoTime();
             reader = Files.newBufferedReader(inputPath, Charset.forName(encoding));
 
             CsvParser parser = new CsvParser(parserSettings);
@@ -152,6 +160,7 @@ public class CsvDiviner {
 
             th.join();
             for (int thi = 0; thi < evths.length; ++thi) {
+                this.logInfo(String.format("Attesa completamento worker %d", thi));
                 evthreads[thi].join();
             }
             EvaluatorThread ev0 = evths[0];
@@ -161,6 +170,7 @@ public class CsvDiviner {
             outRowCount = r.getCount();
 
             fields = ev0.finalizeAndGetFields();
+            elapsedNanotime = System.nanoTime() - evaluateStart;
 
         } catch (NoSuchFileException noFileExc) {
             gotError = true;

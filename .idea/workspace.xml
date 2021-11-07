@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/EvaluatorThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/EvaluatorThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/ReaderThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/ReaderThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +40,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
   <component name="RecentsManager">
@@ -45,7 +52,7 @@
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainCLI --help-usage">
+  <component name="RunManager" selected="Application.MainCLI test 4  smallest">
     <configuration name="Main --version" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
       <module name="tablediviner" />
@@ -102,9 +109,84 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainCLI test 1 - nolog" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="-l ERROR C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI test 1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="-l INFO C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI test 2 small" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="-l INFO C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020-revised.csv" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI test 3 very small" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="-l WARNING C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\goods_classification.csv" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI test 4  smallest" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="-l WARNING C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\services_classification.csv" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main --version" />
       <item itemvalue="Application.MainCLI --version" />
+      <item itemvalue="Application.MainCLI test 1" />
+      <item itemvalue="Application.MainCLI test 1 - nolog" />
+      <item itemvalue="Application.MainCLI test 2 small" />
+      <item itemvalue="Application.MainCLI test 3 very small" />
+      <item itemvalue="Application.MainCLI test 4  smallest" />
       <item itemvalue="Application.MainCLI --help-usage" />
       <item itemvalue="Application.Main --w Wizard" />
     </list>
@@ -139,5 +221,31 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="idx == 0" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/EvaluatorThread.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.lucacanella.csvdiviner.Core.EvaluatorThread" memberName="currentRowOffset" />
+        <PinnedItemInfo parentTag="java.util.concurrent.atomic.AtomicBoolean" memberName="value" />
+        <PinnedItemInfo parentTag="org.lucacanella.csvdiviner.Core.EvaluatorThread" memberName="idx" />
+        <PinnedItemInfo parentTag="org.lucacanella.csvdiviner.Core.EvaluatorThread" memberName="rowsInBuffer" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="idx" language="JAVA" />
+        <watch expression="rowsInBuffer" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
