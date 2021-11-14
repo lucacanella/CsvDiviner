@@ -18,7 +18,7 @@ public class MainWizard {
     public static final String VERSION = "0.1b";
 
     @Parameter(names = { "-l", "--logger" }, descriptionKey = "CliParamLoggerLevel")
-    private String loggerState = "WARN";
+    private String loggerState = "WARNING";
 
     @Parameter(names = { "-h", "--help-usage" }, descriptionKey="CliParamPrintUsage")
     private boolean helpUsage = false;

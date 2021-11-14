@@ -1,11 +1,14 @@
 package org.lucacanella.csvdiviner.Core;
 
+import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.io.Reader;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
@@ -14,28 +17,11 @@ import com.univocity.parsers.csv.CsvParserSettings;
 
 public class CsvDiviner {
 
-    private String encoding;
+    private long elapsedNanotime;
 
-    public enum LoggerState {
-        OFF(4),
-        INFO(3),
-        WARNING(2),
-        ERROR(1);
+    public static final String VERSION = "1.1.1";
 
-        private final int value;
-
-        LoggerState(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
-    public static final String VERSION = "0.2";
-
-    private LoggerState loggerState = LoggerState.ERROR;
+    private DivinerConfig.LoggerLevel loggerState = DivinerConfig.LoggerLevel.ERROR;
 
     /** Output: "Headers" */
     private String outHeaders;
@@ -45,17 +31,7 @@ public class CsvDiviner {
 
     private FieldAnalysis[] fields;
 
-    private int batchSize;
-
-    private int workersCount;
-
     private static final String EOL = System.lineSeparator();
-
-    private char separator;
-
-    private char quoteChar;
-
-    private char escapeChar;
 
     private boolean trimWhitespace;
 
@@ -65,43 +41,34 @@ public class CsvDiviner {
 
     private CsvParserSettings parserSettings;
 
-    public CsvDiviner(char separator) {
-        this(separator, '"');
-    }
+    DivinerConfig cfg;
 
-    public CsvDiviner(char separator, char quoteChar) {
-        this(separator, quoteChar, '\\');
-    }
+    private int currentWorkerCount;
 
-    public CsvDiviner(char separator, char quoteChar, char escapeChar) {
-        this(separator, quoteChar, escapeChar, "UTF-8", 5000, 7);
-    }
+    private int currentBatchSize;
 
-    public CsvDiviner(char separator, char quoteChar, char escapeChar, String encoding) {
-        this(separator, quoteChar, escapeChar, encoding, 5000, 7);
-    }
+    private Map<String, Integer> lastRunWorkerThreadSleepCount;
+    private Map<String, Integer> lastRunWorkerThreadWakeCount;
 
-    public CsvDiviner(char separator, char quoteChar, char escapeChar, String encoding, int batchSize, int workersCount) {
-        this.separator = separator;
-        this.quoteChar = quoteChar;
-        this.batchSize = batchSize;
-        this.escapeChar = escapeChar;
-        this.workersCount = workersCount;
-        this.encoding = encoding;
-        this.trimWhitespace = true;
-
+    public CsvDiviner(DivinerConfig cfg) {
+        this.cfg = cfg;
         parserSettings = new CsvParserSettings();
-        parserSettings.getFormat().setDelimiter(separator);
-        parserSettings.getFormat().setQuote(quoteChar);
-        parserSettings.getFormat().setQuoteEscape(escapeChar);
+        parserSettings.getFormat().setDelimiter(cfg.getSeparator());
+        parserSettings.getFormat().setQuote(cfg.getQuoteChar());
+        parserSettings.getFormat().setQuoteEscape(cfg.getQuoteEscapeChar());
+        parserSettings.setReadInputOnSeparateThread(cfg.getReadOnSeparateThread());
     }
 
-    public void setTrimWhitespace(boolean trimWhitespace) {
-        this.trimWhitespace = trimWhitespace;
+    public DivinerConfig getConfiguration() {
+        return cfg;
     }
 
     public String getHeaders() {
         return outHeaders;
+    }
+
+    public long getElapsedNanotime() {
+        return elapsedNanotime;
     }
 
     public Integer getRowCount() {
@@ -120,6 +87,10 @@ public class CsvDiviner {
     }
 
     public void evaluateFile(String filePathStr) {
+        currentBatchSize = cfg.getBatchSize();
+        currentWorkerCount = cfg.getWorkersCount();
+
+        elapsedNanotime = 0;
         Reader reader;
 
         Thread[] evthreads;
@@ -128,8 +99,13 @@ public class CsvDiviner {
         boolean gotError = false;
         Path inputPath = Paths.get(filePathStr);
 
+
+        lastRunWorkerThreadSleepCount = new HashMap<>();
+        lastRunWorkerThreadWakeCount = new HashMap<>();
+
         try {
-            reader = Files.newBufferedReader(inputPath, Charset.forName(encoding));
+            long evaluateStart = System.nanoTime();
+            reader = Files.newBufferedReader(inputPath, Charset.forName(cfg.getEncoding()));
 
             CsvParser parser = new CsvParser(parserSettings);
             parser.beginParsing(reader);
@@ -137,8 +113,8 @@ public class CsvDiviner {
             String[] headers = parser.parseNext();
             this.outHeaders = String.join(", ", headers);
 
-            evths = new EvaluatorThread[workersCount];
-            evthreads = new Thread[workersCount];
+            evths = new EvaluatorThread[currentWorkerCount];
+            evthreads = new Thread[currentWorkerCount];
             for (int thi = 0; thi < evths.length; ++thi) {
                 evths[thi] = new EvaluatorThread(thi, this, headers);
                 evths[thi].setTrimWhitespace(trimWhitespace);
@@ -146,21 +122,25 @@ public class CsvDiviner {
                 evthreads[thi].start();
             }
 
-            r = new ReaderThread(this, parser, evths);
+            r = new ReaderThread(this, parser, evths, cfg.stateListener);
             Thread th = new Thread(r);
             th.start();
 
             th.join();
             for (int thi = 0; thi < evths.length; ++thi) {
+                this.logInfo(String.format("Attesa completamento worker %d", thi));
                 evthreads[thi].join();
+                lastRunWorkerThreadSleepCount.put(evthreads[thi].getName(), evths[thi].getTotalSleepCount());
+                lastRunWorkerThreadWakeCount.put(evthreads[thi].getName(), evths[thi].getTotalWakeCount());
             }
             EvaluatorThread ev0 = evths[0];
             for (int thi = 1; thi < evths.length; ++thi) {
                 ev0.mergeFieldTypes(evths[thi]);
             }
-            outRowCount = r.getCount();
+            outRowCount = r.getRowCount();
 
             fields = ev0.finalizeAndGetFields();
+            elapsedNanotime = System.nanoTime() - evaluateStart;
 
         } catch (NoSuchFileException noFileExc) {
             gotError = true;
@@ -189,12 +169,8 @@ public class CsvDiviner {
         }
     }
 
-    synchronized public void setLoggerState(LoggerState loggerState) {
-        this.loggerState = loggerState;
-    }
-
     synchronized public void logWarn(String warningTemplate, Object ...params) {
-        if(loggerState.getValue() < LoggerState.WARNING.getValue()) {
+        if(loggerState.getValue() < DivinerConfig.LoggerLevel.WARNING.getValue()) {
             return;
         }
         System.out.print("[Warning] ");
@@ -202,7 +178,7 @@ public class CsvDiviner {
         System.out.print(EOL);
     }
     synchronized public void logInfo(String infoTemplate, Object ...params) {
-        if(loggerState.getValue() < LoggerState.INFO.getValue()) {
+        if(loggerState.getValue() < DivinerConfig.LoggerLevel.INFO.getValue()) {
             return;
         }
         System.out.print("[Info] ");
@@ -214,7 +190,7 @@ public class CsvDiviner {
         exc.printStackTrace(System.out);
     }
     synchronized public void logError(Exception exc, String errorTemplate, String ...params) {
-        if(loggerState.getValue() < LoggerState.ERROR.getValue()) {
+        if(loggerState.getValue() < DivinerConfig.LoggerLevel.ERROR.getValue()) {
             return;
         }
         System.out.print("[Error] ");
@@ -223,7 +199,7 @@ public class CsvDiviner {
         System.out.format("\tMessaggio dell'eccezione: %s%s", exc.getMessage(), EOL);
     }
     synchronized public void logCritical(Error exc, String errorTemplate, String ...params) {
-        if(loggerState.getValue() < LoggerState.ERROR.getValue()) {
+        if(loggerState.getValue() < DivinerConfig.LoggerLevel.ERROR.getValue()) {
             return;
         }
         System.out.print("[CRITICAL] ");
@@ -233,10 +209,21 @@ public class CsvDiviner {
     }
 
     synchronized public int getBatchSize() {
-        return batchSize;
+        return currentBatchSize;
     }
 
     synchronized public int getWorkersCount() {
-        return workersCount;
+        return currentWorkerCount;
     }
+
+    public void printExecutionStats(PrintStream out) {
+        for(String k : lastRunWorkerThreadWakeCount.keySet()) {
+            out.println(String.format("Worker %s stopped %d times and woke %d times.",
+                    k,
+                    lastRunWorkerThreadSleepCount.get(k).intValue(),
+                    lastRunWorkerThreadWakeCount.get(k).intValue()
+            ));
+        }
+    }
+
 }

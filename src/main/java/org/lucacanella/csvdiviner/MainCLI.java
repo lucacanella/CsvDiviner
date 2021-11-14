@@ -5,21 +5,24 @@ import org.lucacanella.csvdiviner.Core.CsvDiviner;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import org.lucacanella.csvdiviner.Core.DivinerConfig;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainCLI {
 
-    public static final String VERSION = "0.2";
+    public static final String VERSION = "1.1";
 
     @Parameter(description = "input_file")
     private List<String> inputFilePath = new ArrayList<>();
 
-    @Parameter(names = { "-l", "--logger" }, description = "Set logger level (OFF|INFO|WARN|ERROR).")
+    @Parameter(names = { "-l", "--logger" }, description = "Set logger level (OFF|INFO|WARNING|ERROR).")
     private String loggerState = "ERROR";
 
     @Parameter(names = { "-h", "--help-usage" }, description = "Print help.")
@@ -38,7 +41,7 @@ public class MainCLI {
     private int workerThreadsCount = 7;
 
     @Parameter(names = { "-b", "--batch-size" }, description = "Batch size - how many rows must be read before being sent to worker thread.")
-    private int batchSize = 5000;
+    private int batchSize = DivinerConfig.DEFAULT_BATCH_SIZE;
 
     @Parameter(names = { "-o", "--output" }, description = "If set, writes analysis json result in a file at the given path.")
     private String outputFilePath = null;
@@ -57,6 +60,12 @@ public class MainCLI {
 
     @Parameter(names = { "--silent" }, description = "Sets silent mode (prints only logs).")
     private boolean silentMode = false;
+
+    @Parameter(names = { "--printStats" }, description = "Print execution stats")
+    private boolean printExecutionStats = false;
+
+    @Parameter(names = { "--showProgress" }, description = "Print execution stats")
+    private boolean showProgress = false;
 
     public static void main(String[] args) {
         var main = new MainCLI();
@@ -85,13 +94,34 @@ public class MainCLI {
             if(!main.silentMode) {
                 System.out.format("Input file: %s%s", inputFilePath, System.lineSeparator());
             }
-            CsvDiviner diviner = new CsvDiviner(
+            DivinerConfig divinerConfig = new DivinerConfig(
                     main.separator.charAt(0),
                     main.quoteChar.charAt(0),
                     main.escapeChar.charAt(0),
                     main.encoding,
-                    main.batchSize, main.workerThreadsCount
+                    main.batchSize,
+                    main.workerThreadsCount
             );
+            divinerConfig.setLoggerLevel(DivinerConfig.LoggerLevel.valueOf(main.loggerState));
+            if(main.showProgress) {
+                System.out.println();
+                AtomicInteger pCounter = new AtomicInteger(0);
+                divinerConfig.setStateListener(new DivinerConfig.ReadStateListener() {
+                    @Override
+                    public void onBatchRead(int rowsRead) {
+                        System.out.print(".");
+                        if(pCounter.addAndGet(1) % 10 == 0) {
+                            System.out.println();
+                        }
+                    }
+
+                    @Override
+                    public void onReadEnd(int rowCount) {
+                        System.out.println("|END|");
+                    }
+                });
+            }
+            CsvDiviner diviner = new CsvDiviner(divinerConfig);
             if(main.lineTerminator != null) {
                 if(main.lineTerminator.equals("LF")) {
                     diviner.getCsvParserSettings().getFormat().setLineSeparator("\n");
@@ -99,11 +129,9 @@ public class MainCLI {
                     diviner.getCsvParserSettings().getFormat().setLineSeparator("\r\n");
                 }
             }
-
             if(main.verboseMode) {
                 System.out.format("Csv parser settings: %s%s", diviner.getCsvParserSettings(), System.lineSeparator());
             }
-            diviner.setLoggerState(CsvDiviner.LoggerState.valueOf(main.loggerState));
             diviner.evaluateFile(inputFilePath);
             if(main.outputFilePath != null) {
                 BufferedWriter writer = null;
@@ -123,7 +151,15 @@ public class MainCLI {
                 System.out.println(diviner.getFieldTypesJson());
             }
             if(!main.silentMode) {
-                System.out.format("%,d righe analizzate nel file%s", diviner.getRowCount(), System.lineSeparator());
+                long elapsedMillis = TimeUnit.NANOSECONDS.toMillis(diviner.getElapsedNanotime());
+                Runtime rt = Runtime.getRuntime();
+                long totalMemoryMB = rt.totalMemory() / (1024 * 1024);
+                long memoryUsedMB = (rt.totalMemory() - rt.freeMemory()) / (1024 * 1024);
+                System.out.format("%,d righe analizzate in %d ms (%d/%d Mb ram utilizzati)%s",
+                        diviner.getRowCount(), elapsedMillis, memoryUsedMB, totalMemoryMB, System.lineSeparator());
+                if(main.printExecutionStats) {
+                    diviner.printExecutionStats(System.out);
+                }
             }
         }
 
