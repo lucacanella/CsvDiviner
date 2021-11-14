@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +72,7 @@
       <command value="mvn jar:jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainCLI --help-usage">
+  <component name="RunManager" selected="Application.MainCLI test 1 - nolog">
     <configuration name="Main --version" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
       <module name="tablediviner" />
@@ -130,7 +132,7 @@
     <configuration name="MainCLI test 1 - nolog" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="--printStats -l ERROR C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv" />
+      <option name="PROGRAM_PARAMETERS" value="--printStats -l ERROR test-files\gsquarterly_december-2020.csv" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -144,7 +146,7 @@
     <configuration name="MainCLI test 1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="-l INFO C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020.csv" />
+      <option name="PROGRAM_PARAMETERS" value="-l INFO test-files\gsquarterly_december-2020.csv" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -158,7 +160,7 @@
     <configuration name="MainCLI test 2 small" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="-l INFO C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\gsquarterly_december-2020-revised.csv" />
+      <option name="PROGRAM_PARAMETERS" value="-l INFO test-files\gsquarterly_december-2020-revised.csv" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -172,7 +174,7 @@
     <configuration name="MainCLI test 3 very small" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="-l WARNING C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\goods_classification.csv" />
+      <option name="PROGRAM_PARAMETERS" value="-l WARNING test-files\goods_classification.csv" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -186,7 +188,7 @@
     <configuration name="MainCLI test 4  smallest" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="-l WARNING C:\Users\thund\Downloads\international-trade-december-2020-quarter-csv\final\services_classification.csv" />
+      <option name="PROGRAM_PARAMETERS" value="-l WARNING test-files\services_classification.csv" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
