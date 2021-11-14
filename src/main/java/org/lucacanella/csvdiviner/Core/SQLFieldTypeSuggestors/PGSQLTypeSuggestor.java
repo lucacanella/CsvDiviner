@@ -1,24 +1,17 @@
-package org.lucacanella.csvdiviner.Core.FieldTypeSuggestors;
+package org.lucacanella.csvdiviner.Core.SQLFieldTypeSuggestors;
 
 import org.lucacanella.csvdiviner.Core.FieldAnalysis;
 
-public class PGSQLTypeSuggestor extends FieldTypeSuggestor {
+public class PGSQLTypeSuggestor extends SQLFieldTypeSuggestor {
 
     protected static final String VARCHAR_TYPE_PATTERN = "VARCHAR(%d)%s";
     protected static final String INTEGER_TYPE_PATTERN = "INTEGER%s";
     protected static final String NUMERIC_TYPE_PATTERN = "NUMERIC%s";
+    protected static final String BIGINT_TYPE_PATTERN = "NUMERIC%s";
     protected static final String DATETIME_TYPE_PATTERN = "DATE%s";
     protected static final String DATE_TYPE_PATTERN = "DATETIME%s";
     protected static final String NOT_NULL_STR = " NOT NULL";
     protected static final String EMPTY_STRING = "";
-
-    public String getVarcharTypeDefinition(FieldAnalysis f) {
-        int maxLength = f.getMaxStrLen();
-        return String.format(VARCHAR_TYPE_PATTERN,
-                maxLength > 0 ? maxLength : 1,
-                f.hasNulls() ? NOT_NULL_STR : EMPTY_STRING
-        );
-    }
 
     public SuggestedType detectSuggestedType(FieldAnalysis f) {
         if(!f.hasValues()) {
@@ -43,9 +36,13 @@ public class PGSQLTypeSuggestor extends FieldTypeSuggestor {
         } else if(containsFloats) {
             return SuggestedType.NUMERIC;
         } else if (containsIntegers) {
-            return SuggestedType.INTEGER;
+            if(f.getMaxStrLen() <= 10) {
+                return SuggestedType.INTEGER;
+            } else {
+                return SuggestedType.BIGINT;
+            }
         } else if (containsDateTime) {
-            return SuggestedType.INTEGER;
+            return SuggestedType.DATETIME;
         } else if (containsDate){
             return SuggestedType.DATE;
         } else if (containsMixedTypes) {
@@ -56,7 +53,7 @@ public class PGSQLTypeSuggestor extends FieldTypeSuggestor {
     }
 
     @Override
-    public String getSuggestedType(FieldAnalysis f) {
+    public String getSuggestedDataTypeDefinition(FieldAnalysis f) {
         String typeDef;
         switch (detectSuggestedType(f)) {
             case VARCHAR:
@@ -64,6 +61,9 @@ public class PGSQLTypeSuggestor extends FieldTypeSuggestor {
                 break;
             case INTEGER:
                 typeDef = getIntegerTypeDefinition(f);
+                break;
+            case BIGINT:
+                typeDef = getBigintTypeDefinition(f);
                 break;
             case DATE:
                 typeDef = getDateTypeDefinition(f);
@@ -77,10 +77,36 @@ public class PGSQLTypeSuggestor extends FieldTypeSuggestor {
             case MIXED:
             case ND:
             default:
-                typeDef = getVarcharTypeDefinition(f);
+                typeDef = getDefaultTypeDefinition(f);
                 break;
         }
         return typeDef;
+    }
+
+    public String getVarcharTypeDefinition(FieldAnalysis f) {
+        int maxLength = f.getMaxStrLen();
+        return String.format(VARCHAR_TYPE_PATTERN,
+                maxLength > 0 ? maxLength : 1,
+                f.hasNulls() ? NOT_NULL_STR : EMPTY_STRING
+        );
+    }
+
+    /**
+     * Fallback type definition (defaults to Varchar)
+     * @param f
+     * @return
+     */
+    private String getDefaultTypeDefinition(FieldAnalysis f) {
+        return getVarcharTypeDefinition(f);
+    }
+
+    /**
+     * @todo
+     * @param f
+     * @return
+     */
+    private String getBigintTypeDefinition(FieldAnalysis f) {
+        return null;
     }
 
     /**

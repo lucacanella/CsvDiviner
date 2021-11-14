@@ -17,29 +17,37 @@ class ReaderThread implements Runnable {
     CsvParser csvParser;
 
     private int batchSize;
+
     private int workersCount;
 
-    public ReaderThread(CsvDiviner parent, CsvParser csvParser, EvaluatorThread[] evths) {
+    private int lastUsedThread;
+
+    private DivinerConfig.ReadStateListener stateListener;
+
+    public ReaderThread(CsvDiviner parent, CsvParser csvParser, EvaluatorThread[] evths,
+                        DivinerConfig.ReadStateListener listener) {
         this.parent = parent;
         this.csvParser = csvParser;
         this.evths = evths;
         this.abort = new AtomicBoolean(false);
         this.batchSize = parent.getBatchSize();
         this.workersCount = parent.getWorkersCount();
+        this.stateListener = listener;
     }
 
     private void sendDataEndToAll() {
         for(int i = 0; i < evths.length; ++i) {
             evths[i].notifyDataEnd();
         }
-        /*for(int i = 0; i < evths.length; ++i) {
-            evths[i].wake();
-        }*/
     }
 
     public void abort() {
         parent.logWarn("Reader got abort signal.");
         this.abort.set(true);
+    }
+
+    public void setStateListener(DivinerConfig.ReadStateListener stateListener) {
+        this.stateListener = stateListener;
     }
 
     @Override
@@ -48,6 +56,8 @@ class ReaderThread implements Runnable {
         parent.logInfo("Inizio lettura");
         int batchCount;
         count = 0;
+        lastUsedThread = 0;
+        stateListener.onBatchRead(0);
         do {
             EvaluatorThread worker = findNextIdleWorkerOrWait();
             worker.lockBuffer();
@@ -69,30 +79,30 @@ class ReaderThread implements Runnable {
             worker.addRows(buffData, count, batchCount);
             worker.unlockBuffer();
             worker.notifyDataReady();
+            stateListener.onBatchRead(count);
         } while (batchCount > 0);
         parent.logInfo("Fine lettura file");
         sendDataEndToAll();
+        stateListener.onReadEnd(count);
     }
 
     private EvaluatorThread findNextIdleWorkerOrWait() {
-        int buffId = 0;
+        int buffId = lastUsedThread;
         EvaluatorThread worker = null;
         try {
             for (int retry = 0; retry < workersCount && !evths[buffId].waitsForData(); ++retry) {
                 buffId = (1 + buffId) % evths.length;
-                Thread.sleep(5);
             }
             worker = evths[buffId];
+            lastUsedThread = buffId;
             parent.logInfo(String.format("Worker %d selezionato.", worker.getId()));
-        } catch (InterruptedException exc) {
-            parent.logError(exc, "Attesa interrotta durante ricerca di un worker in stato idle.");
         } catch (Exception exc) {
             parent.logError(exc, "Errore durante la ricerca o l'attesa di un buffer in stato idle.");
         }
         return worker;
     }
 
-    public int getCount() {
+    public int getRowCount() {
         return count;
     }
 

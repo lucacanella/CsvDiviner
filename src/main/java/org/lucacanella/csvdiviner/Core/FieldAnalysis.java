@@ -9,11 +9,13 @@ public class FieldAnalysis {
 
     public static final int MAX_SAMPLES   = 40;
 
-    //public static final Pattern nonDigitsP = Pattern.compile("[\\D]");
     public static final Pattern intP = Pattern.compile("^(0)|(-?[1-9][0-9]*)$");
     public static final Pattern floatP = Pattern.compile("^-?[0-9]+(\\.|,)[0-9]+$");
-    public static final Pattern dateP = Pattern.compile("^([0-9]{2}/[0-9]{2}/[0-9]{4})|([0-9]{4}-[0-9]{2}-[0-9]{2})$");
-    public static final Pattern dateTimeP = Pattern.compile("^(([0-9]{1,2}/[0-9]{1,2}/[0-9]{4})|([0-9]{4}-[0-9]{1,2}-[0-9]{1,2}))((T|\\s)?[0-9]{1,2}:[0-9]{1,2}:?[0-9]{0,2})((\\.|\\s)[0-9]{0,3})?$");
+    public static final Pattern dateP =
+            Pattern.compile("^([0-9]{1,2}/[0-9]{1,2}/[0-9]{4})|([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})$");
+    public static final Pattern dateTimeP = Pattern.compile(
+             "^(([0-9]{1,2}/[0-9]{1,2}/[0-9]{4})|([0-9]{4}-[0-9]{1,2}-[0-9]{1,2}))"
+            +"((T|\\s)?[0-9]{1,2}:[0-9]{1,2}:?[0-9]{0,2})((\\.|\\s)[0-9]{0,3})?$");
 
     int index;
     String header;
@@ -189,9 +191,6 @@ public class FieldAnalysis {
     }
 
     public void evaluate(String data, int colIdx) {
-		/*if(colIdx != index) {
-			throw new RuntimeException(String.format("Headers mismatch: %d <> %d", colIdx, index));
-		}*/
         if(null != data) {
             int len = data.length();
             if(len == 0) {
@@ -201,28 +200,30 @@ public class FieldAnalysis {
                 maxStrLen = Math.max(maxStrLen, len);
                 minStrLen = Math.min(minStrLen, len);
 
-                boolean intMatch = intP.matcher(data).matches();
-                boolean floatMatch = floatP.matcher(data).matches();
-                boolean dateMatch = dateP.matcher(data).matches();
-                boolean datetimeMatch = dateTimeP.matcher(data).matches();
-                boolean otherValues = !(intMatch|floatMatch|dateMatch|datetimeMatch);
-
-                containsIntegers |= intMatch;
-                containsFloats |= floatMatch;
-                containsDate |= dateMatch;
-                containsDateTime |= datetimeMatch;
-                containsOtherValues |= otherValues;
-
-                if(intMatch && integerSamples.size() < MAX_SAMPLES) {
+                // awful code ahead, but runs way faster than my favourite version
+                if(!intP.matcher(data).matches()) {
+                    if(!floatP.matcher(data).matches()) {
+                        if(!dateP.matcher(data).matches()) {
+                            if(!dateTimeP.matcher(data).matches()) {
+                                containsOtherValues |= true;
+                                if(stringSamples.size() < MAX_SAMPLES) {
+                                    stringSamples.add(data);
+                                }
+                            } else if(datetimeSamples.size() < MAX_SAMPLES) {
+                                containsDateTime |= true;
+                                datetimeSamples.add(data);
+                            }
+                        } else if(dateSamples.size() < MAX_SAMPLES) {
+                            containsDate |= true;
+                            dateSamples.add(data);
+                        }
+                    } else if(floatSamples.size() < MAX_SAMPLES) {
+                        containsFloats |= true;
+                        floatSamples.add(data);
+                    }
+                } else if(integerSamples.size() < MAX_SAMPLES) {
+                    containsIntegers |= true;
                     integerSamples.add(data);
-                } else if(floatMatch && floatSamples.size() < MAX_SAMPLES) {
-                    floatSamples.add(data);
-                } else if(dateMatch && dateSamples.size() < MAX_SAMPLES) {
-                    dateSamples.add(data);
-                } else if(datetimeMatch && datetimeSamples.size() < MAX_SAMPLES) {
-                    datetimeSamples.add(data);
-                } else if(otherValues && stringSamples.size() < MAX_SAMPLES) {
-                    stringSamples.add(data);
                 }
             }
         } else {

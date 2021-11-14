@@ -24,7 +24,9 @@ class EvaluatorThread implements Runnable {
     private int batchSize;
     private int workersCount;
     private boolean trimWhitespace;
-    private int bufferLocked;
+
+    private int sleepCount;
+    private int wakeCount;
 
     public FieldAnalysis[] getFields() {
         return fields;
@@ -39,8 +41,7 @@ class EvaluatorThread implements Runnable {
         this.idx = idx;
         this.parent = parent;
         this.fieldsCount = headers.length;
-
-        this.bufferLocked = 0;
+        this.wakeCount = 0;
 
         currentRowOffset = 0;
         trimWhitespace = true;
@@ -70,7 +71,6 @@ class EvaluatorThread implements Runnable {
     }
 
     public void unlockBuffer() {
-        this.bufferLocked -= 1;
         parent.logInfo("Sblocco mutex del buffer per worker %d", idx, currentRowOffset);
         this.bufferMutex.unlock();
     }
@@ -106,6 +106,7 @@ class EvaluatorThread implements Runnable {
                 synchronized (waitForData) {
                     if (isWaitingForData.get()) {
                         parent.logInfo(String.format("Worker %d attende dati...", idx));
+                        ++sleepCount;
                         waitForData.wait();
                     } else {
                         parent.logInfo(String.format("Worker %d contiene %d righe di dati.", idx, rowsInBuffer));
@@ -121,6 +122,7 @@ class EvaluatorThread implements Runnable {
     }
 
     private void processData() {
+        ++wakeCount;
         try {
             bufferMutex.lock();
             parent.logInfo(String.format("Worker %d inizia a processare i dati.", idx));
@@ -176,10 +178,18 @@ class EvaluatorThread implements Runnable {
     public void lockBuffer() {
         this.bufferMutex.lock();
         parent.logInfo("Blocco mutex del buffer per worker %d per inizio scrittura dati)", idx, currentRowOffset);
-        this.bufferLocked += 1;
     }
 
     public int getId() {
         return idx;
     }
+
+    public int getTotalWakeCount() {
+        return wakeCount;
+    }
+
+    public int getTotalSleepCount() {
+        return sleepCount;
+    }
+
 }
