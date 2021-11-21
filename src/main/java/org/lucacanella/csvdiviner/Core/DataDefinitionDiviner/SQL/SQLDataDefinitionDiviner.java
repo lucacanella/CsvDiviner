@@ -69,8 +69,14 @@ public class SQLDataDefinitionDiviner
         if(null == ddStrings || ddStrings.length < 1) {
             throw new IllegalStateException("Errore durante il recupero della definizione dati: Valutazione non valida.");
         } else {
+            String tableName = config.getContainerName();
+            if(null == tableName) {
+                tableName = "table_name";
+            }
             return new StringBuilder()
-                    .append("CREATE TABLE table_name (")
+                    .append("CREATE TABLE ")
+                    .append(tableName)
+                    .append(" (")
                     .append(EOL)
                     .append("\t")
                     .append(String.join(","+EOL+"\t", ddStrings))

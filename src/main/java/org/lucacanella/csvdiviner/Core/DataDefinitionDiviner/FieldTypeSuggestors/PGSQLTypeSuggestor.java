@@ -9,8 +9,8 @@ public class PGSQLTypeSuggestor
     protected static final String BIGINT_TYPE_PATTERN = "BIGINT%s";
     protected static final String INTEGER_TYPE_PATTERN = "INTEGER%s";
     protected static final String NUMERIC_TYPE_PATTERN = "NUMERIC%s";
-    protected static final String DATETIME_TYPE_PATTERN = "DATE%s";
-    protected static final String DATE_TYPE_PATTERN = "DATETIME%s";
+    protected static final String DATE_TYPE_PATTERN = "DATE%s";
+    protected static final String DATETIME_TYPE_PATTERN = "TIMESTAMP%s";
     protected static final String NOT_NULL_STR = " NOT NULL";
     protected static final String EMPTY_STRING = "";
 
@@ -48,29 +48,14 @@ public class PGSQLTypeSuggestor
         );
     }
 
-    /**
-     * @todo
-     * @param f
-     * @return
-     */
     private String getDateTypeDefinition(FieldAnalysis f) {
         return String.format(DATE_TYPE_PATTERN, f.hasNulls() ? EMPTY_STRING : NOT_NULL_STR);
     }
 
-    /**
-     * @todo
-     * @param f
-     * @return
-     */
     private String getDateTimeTypeDefinition(FieldAnalysis f) {
         return String.format(DATETIME_TYPE_PATTERN, f.hasNulls() ? EMPTY_STRING : NOT_NULL_STR);
     }
 
-    /**
-     * @todo
-     * @param f
-     * @return
-     */
     private String getIntegerTypeDefinition(FieldAnalysis f) {
         if(f.getMaxStrLen() > 10) {
             return String.format(BIGINT_TYPE_PATTERN, f.hasNulls() ? EMPTY_STRING : NOT_NULL_STR);
@@ -79,11 +64,6 @@ public class PGSQLTypeSuggestor
         }
     }
 
-    /**
-     * @todo
-     * @param f
-     * @return
-     */
     private String getNumericTypeDefinition(FieldAnalysis f) {
         return String.format(NUMERIC_TYPE_PATTERN, f.hasNulls() ? EMPTY_STRING : NOT_NULL_STR);
     }

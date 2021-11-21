@@ -113,10 +113,6 @@ public class FieldAnalysis {
         return samplesCount;
     }
 
-    public boolean isAnalysisFinalized() {
-        return analysisFinalized;
-    }
-
     public FieldAnalysis finalizeBeforeSerialize() {
         Strings = getSamples(stringSamples);
         Integers = getSamples(integerSamples);

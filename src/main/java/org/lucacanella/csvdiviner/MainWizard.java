@@ -1,12 +1,12 @@
 package org.lucacanella.csvdiviner;
 
 import com.beust.jcommander.Parameters;
-import com.univocity.parsers.csv.CsvParserSettings;
-import org.lucacanella.csvdiviner.Core.CsvDiviner;
+import org.lucacanella.csvdiviner.Core.CsvDiviner.CsvDiviner;
 
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import org.lucacanella.csvdiviner.Core.Config.CsvDivinerConfig;
 
 import java.io.File;
 import java.util.*;
@@ -169,73 +169,50 @@ public class MainWizard {
     }
 
     private static void continueForCsv(File inputFile, Locale locale, ResourceBundle messages) {
-        CsvParserSettings parserSettings = new CsvParserSettings();
+        CsvDivinerConfig divinerConfig = new CsvDivinerConfig();
 
         // separatore record (terminatore linee)
         String lineSep = inQuestion(messages.getString("CliWizLineSeparatorQuestion"), messages, "true");
         switch(lineSep.toLowerCase(locale)) {
-            case "crlf":
-                parserSettings.getFormat().setLineSeparator("\r\n");
-                break;
             case "lf":
-                parserSettings.getFormat().setLineSeparator("\n");
+                divinerConfig.setSeparator('\n');
                 break;
             case "auto":
-                parserSettings.setLineSeparatorDetectionEnabled(true);
+                divinerConfig.getParserSettings().setLineSeparatorDetectionEnabled(true);
                 break;
-            default:
-                outFormatNL(messages.getString("CliWizInvalidValueSpecifiedTmpl"), "CRLF, LF, AUTO");
+            case "":
+                outFormatNL(messages.getString("CliWizInvalidValueSpecifiedTmpl"), "LF, AUTO, <single_char>");
                 System.exit(-1);
                 break;
+            default:
+                if(lineSep.length() > 1) {
+                    outFormatNL(messages.getString("CliWizInvalidValueSpecifiedTmpl"), "LF, AUTO, <single_char>");
+                    System.exit(-1);
+                    break;
+                }
+                divinerConfig.setSeparator(lineSep.charAt(0));
         }
 
         String nullValue = inQuestionOptional(messages.getString("CliWizNullValueQuestion"));
         if(null != nullValue) {
-            parserSettings.setNullValue(nullValue);
+            divinerConfig.getParserSettings().setNullValue(nullValue);
         }
 
         String emptyValue = inQuestionOptional(messages.getString("CliWizEmptyValueQuestion"));
         if(null != nullValue) {
-            // sets what is the default value to use when the parsed value is empty - for CSV only
-            parserSettings.setEmptyValue(emptyValue);
+            divinerConfig.getParserSettings().setEmptyValue(emptyValue);
         }
 
         String specifyHeaders = inQuestion(messages.getString("CliWizSetHeadersQuestion"), messages, "NO");
         if(Pattern.matches(messages.getString("CliWizYesAnswerPatt"), specifyHeaders)) {
-            // sets the headers of the parsed file. If the headers are set then 'setHeaderExtractionEnabled(true)'
-            // will make the parser simply ignore the first input row.
-            parserSettings.setHeaders("a", "b", "c", "d", "e");
+            divinerConfig.getParserSettings().setHeaders("a", "b", "c", "d", "e");
         }
-
-        // does not skip leading whitespaces
-        parserSettings.setIgnoreLeadingWhitespaces(false);
-
-        // does not skip trailing whitespaces
-        parserSettings.setIgnoreTrailingWhitespaces(false);
-
-        // reads a fixed number of records then stop and close any resources
-        parserSettings.setNumberOfRecordsToRead(9);
-
-        // does not skip empty lines
-        parserSettings.setSkipEmptyLines(false);
 
         // sets the maximum number of characters to read in each column.
         // The default is 4096 characters. You need this to avoid OutOfMemoryErrors in case a file
         // does not have a valid format. In such cases the parser might just keep reading from the input
         // until its end or the memory is exhausted. This sets a limit which avoids unwanted JVM crashes.
-        parserSettings.setMaxCharsPerColumn(100);
-
-        // for the same reasons as above, this sets a hard limit on how many columns an input row can have.
-        // The default is 512.
-        parserSettings.setMaxColumns(10);
-
-        // Sets the number of characters held by the parser's buffer at any given time.
-        parserSettings.setInputBufferSize(1000);
-
-        // Disables the separate thread that loads the input buffer. By default, the input is going to be loaded incrementally
-        // on a separate thread if the available processor number is greater than 1. Leave this enabled to get better performance
-        // when parsing big files (> 100 Mb).
-        parserSettings.setReadInputOnSeparateThread(false);
+        divinerConfig.getParserSettings().setMaxCharsPerColumn(4096);
     }
 
 }

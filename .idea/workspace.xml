@@ -10,10 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/CLICreateDDLMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/CLICreateDDLMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/Config/DataDefinitionDivinerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/Config/DataDefinitionDivinerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner/FieldAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner/FieldAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/FieldTypeSuggestors/FieldTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/FieldTypeSuggestors/FieldTypeSuggestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/FieldTypeSuggestors/PGSQLTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/FieldTypeSuggestors/PGSQLTypeSuggestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/SQL/SQLDataDefinitionDiviner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/SQL/SQLDataDefinitionDiviner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DivinerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/EvaluatorThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldAnalysis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/FieldTypeSuggestor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLTypeSuggestor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/FieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/ReaderThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/SQLFieldTypeSuggestors/PGSQLTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/SQLFieldTypeSuggestors/PGSQLTypeSuggestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/SQLFieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/SQLFieldTypeSuggestors/PGSQLVarcharOnlyTypeSuggestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/SQLFieldTypeSuggestors/SQLFieldTypeSuggestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/SQLFieldTypeSuggestors/SQLFieldTypeSuggestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainMessages.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +43,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -54,17 +73,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2037037" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.lucacanella.csvdiviner.Core" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main\resources" />
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main\resources\properties" />
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner" />
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.lucacanella.csvdiviner.Core.Log" />
+      <recent name="org.lucacanella.csvdiviner.Core" />
+      <recent name="org.lucacanella.csvdiviner" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -72,7 +99,7 @@
       <command value="mvn jar:jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainCLI test 1 - nolog">
+  <component name="RunManager" selected="Application.MainCLI gen_sql - test 2">
     <configuration name="Main --version" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
       <module name="tablediviner" />
@@ -129,10 +156,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainCLI test 1 - nolog" type="Application" factoryName="Application">
+    <configuration name="MainCLI gen_sql - test 1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="--printStats -l ERROR test-files\gsquarterly_december-2020.csv" />
+      <option name="PROGRAM_PARAMETERS" value="gen_sql -l INFO test-files\gsquarterly_december-2020.csv.json" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI gen_sql - test 2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="gen_sql -t my_table -l INFO test-files\dd_gen_test.json" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI test 1 --silent" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="analyze --printStats --silent test-files\gsquarterly_december-2020.csv" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -253,10 +308,12 @@
       <item itemvalue="Application.Main --version" />
       <item itemvalue="Application.MainCLI --version" />
       <item itemvalue="Application.MainCLI test 1" />
-      <item itemvalue="Application.MainCLI test 1 - nolog" />
+      <item itemvalue="Application.MainCLI test 1 --silent" />
       <item itemvalue="Application.MainCLI test 2 small" />
       <item itemvalue="Application.MainCLI test 3 very small" />
       <item itemvalue="Application.MainCLI test 4  smallest" />
+      <item itemvalue="Application.MainCLI gen_sql - test 1" />
+      <item itemvalue="Application.MainCLI gen_sql - test 2" />
       <item itemvalue="Application.MainCLI --help-usage" />
       <item itemvalue="Application.Main --w Wizard" />
       <item itemvalue="Maven.tablediviner [jar:jar]" />

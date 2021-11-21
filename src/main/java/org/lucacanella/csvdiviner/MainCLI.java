@@ -1,172 +1,41 @@
 package org.lucacanella.csvdiviner;
 
-import org.lucacanella.csvdiviner.Core.CsvDiviner;
-
-
-import com.beust.jcommander.JCommander;
-import com.beust.jcommander.Parameter;
-import org.lucacanella.csvdiviner.Core.DivinerConfig;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class MainCLI {
 
-    public static final String VERSION = "1.1";
+    public static final String VERSION = "1.2";
 
-    @Parameter(description = "input_file")
-    private List<String> inputFilePath = new ArrayList<>();
+    private static final String ANALYZE_MODE = "analyze";
+    private static final String CREATE_SQL_DATA_DEFINITION_MODE = "gen_sql";
 
-    @Parameter(names = { "-l", "--logger" }, description = "Set logger level (OFF|INFO|WARNING|ERROR).")
-    private String loggerState = "ERROR";
-
-    @Parameter(names = { "-h", "--help-usage" }, description = "Print help.")
-    private boolean helpUsage = false;
-
-    @Parameter(names = { "-s", "--separator" }, description = "Csv fields separator, defaults to ','.")
-    private String separator = ",";
-
-    @Parameter(names = { "-q", "--quotechar" }, description = "Csv fields quote char - defaults to '\"'.")
-    private String quoteChar = "\"";
-
-    @Parameter(names = { "-e", "--escapechar" }, description = "Csv escape char - defaults to '\\'.")
-    private String escapeChar = "\\";
-
-    @Parameter(names = { "-w", "--worker-threads" }, description = "Number of worker threads.")
-    private int workerThreadsCount = 7;
-
-    @Parameter(names = { "-b", "--batch-size" }, description = "Batch size - how many rows must be read before being sent to worker thread.")
-    private int batchSize = DivinerConfig.DEFAULT_BATCH_SIZE;
-
-    @Parameter(names = { "-o", "--output" }, description = "If set, writes analysis json result in a file at the given path.")
-    private String outputFilePath = null;
-
-    @Parameter(names = { "-t", "--line-terminator" }, description = "Sets the line terminator (options are 'LF' or 'CRLF').")
-    private String lineTerminator = null;
-
-    @Parameter(names = { "-v", "--verbose" }, description = "Prints some information.")
-    private boolean verboseMode = false;
-
-    @Parameter(names = { "-c", "--charset" }, description = "Set input file encoding (defaults to UTF-8, see https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html).")
-    private String encoding = "UTF-8";
-
-    @Parameter(names = { "--version" }, description = "Prints version information.")
-    private boolean versionMode = false;
-
-    @Parameter(names = { "--silent" }, description = "Sets silent mode (prints only logs).")
-    private boolean silentMode = false;
-
-    @Parameter(names = { "--printStats" }, description = "Print execution stats")
-    private boolean printExecutionStats = false;
-
-    @Parameter(names = { "--showProgress" }, description = "Print execution stats")
-    private boolean showProgress = false;
+    private static String[] removeModeArg(String[] args) {
+        String[] oldArgs = args;
+        args = new String[oldArgs.length - 1];
+        System.arraycopy(oldArgs, 1, args, 0, args.length);
+        return args;
+    }
 
     public static void main(String[] args) {
-        var main = new MainCLI();
-        JCommander command = JCommander.newBuilder()
-                .addObject(main)
-                .build();
-        command.parse(args);
-
-        if(main.versionMode) {
-            System.out.format("CsvDiviner versione: %s%sCli Versione: %s%s",
-                    CsvDiviner.VERSION, System.lineSeparator(), MainCLI.VERSION, System.lineSeparator());
+        if(args.length < 1) {
+            System.out.printf("Selezionare la modalità di esecuzione: '%s', '%s'", ANALYZE_MODE, CREATE_SQL_DATA_DEFINITION_MODE);
+            System.out.println();
         }
 
-        if(main.separator.length() != 1) {
-            System.out.format("Il parametro separatore (-s) deve essere un singolo carattere (\"%s\" ricevuto).%s", main.separator, System.lineSeparator());
-        } else if(main.quoteChar.length() != 1) {
-            System.out.format("Il qualificatore di stringa (-q) deve essere un singolo carattere (\"%s\" ricevuto).%s", main.quoteChar, System.lineSeparator());
-        } else if(main.escapeChar.length() != 1) {
-            System.out.format("Il carattere di escape (-e) deve essere un singolo carattere (\"%s\" ricevuto).%s", main.escapeChar, System.lineSeparator());
-        } else if(main.inputFilePath.size() != 1) {
-            System.out.println("Specifica uno ed un solo file di input come argomento.");
-        } else if (main.lineTerminator != null && !(main.lineTerminator.equals("LF") || main.lineTerminator.equals("CRLF"))) {
-            System.out.println("Terminatore di linea non supportato. Solamente \"LF\" o \"CRLF\" sono supportati supported (ie. -t CRLF)");
-        } else {
-            String inputFilePath = main.inputFilePath.get(0);
-            if(!main.silentMode) {
-                System.out.format("Input file: %s%s", inputFilePath, System.lineSeparator());
-            }
-            DivinerConfig divinerConfig = new DivinerConfig(
-                    main.separator.charAt(0),
-                    main.quoteChar.charAt(0),
-                    main.escapeChar.charAt(0),
-                    main.encoding,
-                    main.batchSize,
-                    main.workerThreadsCount
-            );
-            divinerConfig.setLoggerLevel(DivinerConfig.LoggerLevel.valueOf(main.loggerState));
-            if(main.showProgress) {
+        DivinerCLIExecutionModeInterface exec;
+        String currentMode = args[0];
+        switch (currentMode) {
+            case CREATE_SQL_DATA_DEFINITION_MODE:
+                args = MainCLI.removeModeArg(args);
+                exec = new CLICreateDDLMode();
+                break;
+            case ANALYZE_MODE:
+                args = MainCLI.removeModeArg(args);
+            default:
+                System.out.printf("Attivata modalità esecuzione di default: '%s'", ANALYZE_MODE);
                 System.out.println();
-                AtomicInteger pCounter = new AtomicInteger(0);
-                divinerConfig.setStateListener(new DivinerConfig.ReadStateListener() {
-                    @Override
-                    public void onBatchRead(int rowsRead) {
-                        System.out.print(".");
-                        if(pCounter.addAndGet(1) % 10 == 0) {
-                            System.out.println();
-                        }
-                    }
-
-                    @Override
-                    public void onReadEnd(int rowCount) {
-                        System.out.println("|END|");
-                    }
-                });
-            }
-            CsvDiviner diviner = new CsvDiviner(divinerConfig);
-            if(main.lineTerminator != null) {
-                if(main.lineTerminator.equals("LF")) {
-                    diviner.getCsvParserSettings().getFormat().setLineSeparator("\n");
-                } else if (main.lineTerminator.equals("CRLF")) {
-                    diviner.getCsvParserSettings().getFormat().setLineSeparator("\r\n");
-                }
-            }
-            if(main.verboseMode) {
-                System.out.format("Csv parser settings: %s%s", diviner.getCsvParserSettings(), System.lineSeparator());
-            }
-            diviner.evaluateFile(inputFilePath);
-            if(main.outputFilePath != null) {
-                BufferedWriter writer = null;
-                try {
-                    writer = new BufferedWriter(new FileWriter(main.outputFilePath));
-                    writer.write(diviner.getFieldTypesJson());
-                    writer.close();
-                    if(!main.silentMode) {
-                        System.out.format("\tL'output è stato scritto nel file %s%s", main.outputFilePath, System.lineSeparator());
-                    }
-                } catch (IOException e) {
-                    System.out.println("Errore imprevisto durante la scrittura del file di output:");
-                    System.out.format("\t%s", e.getMessage(), System.lineSeparator());
-                }
-            } else {
-                System.out.println("Risultato dell'analisi: ");
-                System.out.println(diviner.getFieldTypesJson());
-            }
-            if(!main.silentMode) {
-                long elapsedMillis = TimeUnit.NANOSECONDS.toMillis(diviner.getElapsedNanotime());
-                Runtime rt = Runtime.getRuntime();
-                long totalMemoryMB = rt.totalMemory() / (1024 * 1024);
-                long memoryUsedMB = (rt.totalMemory() - rt.freeMemory()) / (1024 * 1024);
-                System.out.format("%,d righe analizzate in %d ms (%d/%d Mb ram utilizzati)%s",
-                        diviner.getRowCount(), elapsedMillis, memoryUsedMB, totalMemoryMB, System.lineSeparator());
-                if(main.printExecutionStats) {
-                    diviner.printExecutionStats(System.out);
-                }
-            }
+                exec = new CLIAnalyzerMode();
+                break;
         }
-
-        if(main.helpUsage) {
-            command.usage();
-            return;
-        }
+        exec.execute(args);
     }
 
 }

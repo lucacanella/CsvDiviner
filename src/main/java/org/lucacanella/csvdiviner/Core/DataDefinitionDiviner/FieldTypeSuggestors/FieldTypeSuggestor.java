@@ -31,7 +31,7 @@ public abstract class FieldTypeSuggestor {
         } else if (containsIntegers) {
             return SuggestedType.INTEGER;
         } else if (containsDateTime) {
-            return SuggestedType.INTEGER;
+            return SuggestedType.DATETIME;
         } else if (containsDate){
             return SuggestedType.DATE;
         } else if (containsMixedTypes) {

@@ -44,6 +44,9 @@ public class CLICreateDDLMode
     @Parameter(names = { "--silent" }, description = "Sets silent mode (prints only logs).")
     private boolean silentMode = false;
 
+    @Parameter(names = { "-t", "--table" }, description = "The SQL Table name for the CREATE TABLE statement")
+    private String tableName = null;
+
     public void execute(String[] cliArgs) {
         System.out.println(String.join("; ",cliArgs));
         JCommander command = JCommander.newBuilder()
@@ -62,6 +65,7 @@ public class CLICreateDDLMode
             DataDefinitionDivinerConfig config = new DataDefinitionDivinerConfig();
             config.setEncoding(this.encoding);
             config.setLoggerLevel(LoggerLevel.valueOf(this.loggerState));
+            config.setContainerName(this.tableName);
 
             DataDefinitionDivinerInterface ddDiviner = new SQLDataDefinitionDiviner(config);
             if(this.verboseMode) {

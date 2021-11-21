@@ -1,6 +1,6 @@
 package org.lucacanella.csvdiviner.Core.SQLFieldTypeSuggestors;
 
-import org.lucacanella.csvdiviner.Core.FieldAnalysis;
+import org.lucacanella.csvdiviner.Core.CsvDiviner.FieldAnalysis;
 
 /**
  * This suggestor returns only varchar type definition as suitable for each analyzed field.
