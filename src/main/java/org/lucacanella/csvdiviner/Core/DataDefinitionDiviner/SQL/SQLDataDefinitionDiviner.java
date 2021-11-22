@@ -14,6 +14,8 @@ import org.lucacanella.csvdiviner.Core.Log.SynchronizedLogger;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.Reader;
+import java.io.StringReader;
 import java.lang.reflect.Type;
 
 public class SQLDataDefinitionDiviner
@@ -47,20 +49,15 @@ public class SQLDataDefinitionDiviner
         return this.config;
     }
 
-    public void evaluateFile(String inputFilePath) {
-        try {
-            FileReader reader = new FileReader(inputFilePath);
-            Gson gson = new GsonBuilder().create();
-            Type fieldsType = new TypeToken<FieldAnalysis[]>() {}.getType();
-            FieldAnalysis[] fields = gson.fromJson(reader, fieldsType);
-            ddStrings = new String[fields.length];
-            for(int i = 0; i < fields.length; ++i) {
-                ddStrings[i] = typeSuggestor.getDataDefinitionString(
-                        fields[i]
-                );
-            }
-        } catch (FileNotFoundException e) {
-            log.logError(e, "Errore critico durante la lettura del file %s", inputFilePath);
+    public void evaluate(Reader reader) {
+        Gson gson = new GsonBuilder().create();
+        Type fieldsType = new TypeToken<FieldAnalysis[]>() {}.getType();
+        FieldAnalysis[] fields = gson.fromJson(reader, fieldsType);
+        ddStrings = new String[fields.length];
+        for(int i = 0; i < fields.length; ++i) {
+            ddStrings[i] = typeSuggestor.getDataDefinitionString(
+                    fields[i]
+            );
         }
     }
 

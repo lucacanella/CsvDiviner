@@ -167,6 +167,7 @@ public class FieldAnalysis {
         maxStrLen = Math.max(maxStrLen, other.maxStrLen);
         minStrLen = Math.min(minStrLen, other.minStrLen);
         containsIntegers = containsIntegers | other.containsIntegers;
+        containsFloats = containsFloats | other.containsFloats;
         containsDate = containsDate | other.containsDate;
         containsDateTime = containsDateTime | other.containsDateTime;
         containsOtherValues = containsOtherValues | other.containsOtherValues;

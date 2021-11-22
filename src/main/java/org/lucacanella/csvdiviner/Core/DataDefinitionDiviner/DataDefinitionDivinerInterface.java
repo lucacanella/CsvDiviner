@@ -2,14 +2,16 @@ package org.lucacanella.csvdiviner.Core.DataDefinitionDiviner;
 
 import org.lucacanella.csvdiviner.Core.Config.DataDefinitionDivinerConfig;
 
+import java.io.Reader;
+
 public interface DataDefinitionDivinerInterface {
 
-    public DataDefinitionDivinerConfig getConfig();
+    DataDefinitionDivinerConfig getConfig();
 
-    public void evaluateFile(String csvDivinerResultFilePath);
+    void evaluate(Reader input);
 
-    public String getDataDefinition();
+    String getDataDefinition();
 
-    public String getName();
+    String getName();
 
 }

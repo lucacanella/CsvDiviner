@@ -1,5 +1,6 @@
 package org.lucacanella.csvdiviner;
 
 public interface DivinerCLIExecutionModeInterface {
-    public void execute(String[] cliArgs);
+    String execute(String[] cliArgs);
+    void pipeIn(String input) throws PipeInputNotSupportedException;
 }

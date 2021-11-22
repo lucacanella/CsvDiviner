@@ -9,9 +9,7 @@ import org.lucacanella.csvdiviner.Core.DataDefinitionDiviner.DataDefinitionDivin
 import org.lucacanella.csvdiviner.Core.DataDefinitionDiviner.SQL.SQLDataDefinitionDiviner;
 import org.lucacanella.csvdiviner.Core.Log.LoggerLevel;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +17,8 @@ public class CLICreateDDLMode
         implements DivinerCLIExecutionModeInterface {
 
     public static final String VERSION = "0.1";
+
+    private final String EOL = System.lineSeparator();
 
     @Parameter(description = "input_file")
     private List<String> inputFilePath = new ArrayList<>();
@@ -47,8 +47,10 @@ public class CLICreateDDLMode
     @Parameter(names = { "-t", "--table" }, description = "The SQL Table name for the CREATE TABLE statement")
     private String tableName = null;
 
-    public void execute(String[] cliArgs) {
-        System.out.println(String.join("; ",cliArgs));
+    private String pipedInput;
+
+    public String execute(String[] cliArgs) {
+        String result = null;
         JCommander command = JCommander.newBuilder()
             .addObject(this)
             .build();
@@ -56,12 +58,8 @@ public class CLICreateDDLMode
 
         if(this.versionMode) {
             System.out.format("CsvDiviner, CreateDDL version: %s%CreateDDL Cli Version: %s%s",
-                    CsvDiviner.VERSION, System.lineSeparator(), CLIAnalyzerMode.VERSION, System.lineSeparator());
+                    CsvDiviner.VERSION, EOL, CLIAnalyzerMode.VERSION, EOL);
         } else {
-            String inputFilePath = this.inputFilePath.get(0);
-            if(!this.silentMode) {
-                System.out.format("Input file: %s%s", inputFilePath, System.lineSeparator());
-            }
             DataDefinitionDivinerConfig config = new DataDefinitionDivinerConfig();
             config.setEncoding(this.encoding);
             config.setLoggerLevel(LoggerLevel.valueOf(this.loggerState));
@@ -69,32 +67,62 @@ public class CLICreateDDLMode
 
             DataDefinitionDivinerInterface ddDiviner = new SQLDataDefinitionDiviner(config);
             if(this.verboseMode) {
-                System.out.format("%s settings: %s%s", ddDiviner.getName(), ddDiviner.getConfig(), System.lineSeparator());
+                System.out.format("%s settings: %s%s", ddDiviner.getName(), ddDiviner.getConfig(), EOL);
             }
-            ddDiviner.evaluateFile(inputFilePath);
-            String dataDefinitionString = ddDiviner.getDataDefinition();
-            if(this.outputFilePath != null) {
-                BufferedWriter writer = null;
+
+            if(null == pipedInput) {
+                if (this.inputFilePath.size() < 1) {
+                    throw new RuntimeException("Missing input file name parameter.");
+                }
+                String inputFilePath = this.inputFilePath.get(0);
+                if (!this.silentMode) {
+                    System.out.format("Input file: %s%s",
+                            inputFilePath, EOL
+                    );
+                }
                 try {
-                    writer = new BufferedWriter(new FileWriter(this.outputFilePath));
-                    writer.write(dataDefinitionString);
-                    writer.close();
-                    if(!this.silentMode) {
-                        System.out.format("\tL'output è stato scritto nel file %s%s", this.outputFilePath, System.lineSeparator());
-                    }
-                } catch (IOException e) {
-                    System.out.println("Errore imprevisto durante la scrittura del file di output:");
-                    System.out.format("\t%s", e.getMessage(), System.lineSeparator());
+                    FileReader reader = new FileReader(inputFilePath);
+                    ddDiviner.evaluate(reader);
+                } catch (FileNotFoundException e) {
+                    System.out.format(
+                            "Errore critico durante la lettura del file %s: %s%s",
+                            inputFilePath, e.getMessage(), EOL
+                    );
                 }
             } else {
-                System.out.println("Risultato dell'analisi: ");
-                System.out.println(dataDefinitionString);
+                ddDiviner.evaluate(new StringReader(pipedInput));
+            }
+            result = ddDiviner.getDataDefinition();
+            if(this.outputFilePath != null) {
+                try {
+                    BufferedWriter writer = null;
+                    writer = new BufferedWriter(new FileWriter(this.outputFilePath));
+                    writer.write(result);
+                    writer.close();
+                    if(!this.silentMode) {
+                        System.out.format("\tL'output è stato scritto nel file %s%s", this.outputFilePath, EOL);
+                    }
+                } catch (IOException e) {
+                    System.out.printf(
+                            "Errore imprevisto durante la scrittura del file di output:%s\t%s%s",
+                            EOL, e.getMessage(), EOL
+                    );
+                }
+            } else {
+                System.out.printf(
+                        "Risultato dell'analisi: %s%s%s", EOL, result, EOL
+                );
             }
         }
 
         if(this.helpUsage) {
             command.usage();
-            return;
         }
+        return result;
+    }
+
+    @Override
+    public void pipeIn(String input) throws PipeInputNotSupportedException {
+        this.pipedInput = input;
     }
 }

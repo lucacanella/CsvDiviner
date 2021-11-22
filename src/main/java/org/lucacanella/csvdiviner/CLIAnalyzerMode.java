@@ -71,7 +71,10 @@ public class CLIAnalyzerMode
     @Parameter(names = { "--showProgress" }, description = "Print execution stats")
     private boolean showProgress = false;
 
-    public void execute(String[] cliArgs) {
+    private String pipedInput;
+
+    public String execute(String[] cliArgs) {
+        String result = null;
         System.out.println(String.join("; ",cliArgs));
         JCommander command = JCommander.newBuilder()
             .addObject(this)
@@ -132,11 +135,12 @@ public class CLIAnalyzerMode
                 System.out.format("Csv parser settings: %s%s", diviner.getCsvParserSettings(), System.lineSeparator());
             }
             diviner.evaluateFile(inputFilePath);
+            result = diviner.getFieldTypesJson();
             if(this.outputFilePath != null) {
                 BufferedWriter writer = null;
                 try {
                     writer = new BufferedWriter(new FileWriter(this.outputFilePath));
-                    writer.write(diviner.getFieldTypesJson());
+                    writer.write(result);
                     writer.close();
                     if(!this.silentMode) {
                         System.out.format("\tL'output è stato scritto nel file %s%s", this.outputFilePath, System.lineSeparator());
@@ -147,7 +151,7 @@ public class CLIAnalyzerMode
                 }
             } else {
                 System.out.println("Risultato dell'analisi: ");
-                System.out.println(diviner.getFieldTypesJson());
+                System.out.println(result);
             }
             if(this.printExecutionStats || !this.silentMode) {
                 long elapsedMillis = TimeUnit.NANOSECONDS.toMillis(diviner.getElapsedNanotime());
@@ -164,8 +168,12 @@ public class CLIAnalyzerMode
 
         if(this.helpUsage) {
             command.usage();
-            return;
         }
+        return result;
+    }
+
+    public void pipeIn(String input) throws PipeInputNotSupportedException {
+        throw new PipeInputNotSupportedException();
     }
 
     private class DefaultProgressStateListener
