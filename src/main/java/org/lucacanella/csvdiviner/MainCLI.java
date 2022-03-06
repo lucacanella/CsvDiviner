@@ -24,7 +24,6 @@ public class MainCLI {
                     ExecutionModes.CREATE_SQL_DATA_DEFINITION_MODE
             );
             System.out.println();
-            return;
         }
 
         Set<String> availableModesText =
@@ -59,9 +58,15 @@ public class MainCLI {
                     switch (executionMode) {
                         case CREATE_SQL_DATA_DEFINITION_MODE:
                             exec = new CLICreateDDLMode();
+                            if(null == modeArgs || modeArgs.length < 1) {
+                                throw new IllegalArgumentException(String.format("Missing arguments for %s mode", ExecutionModes.CREATE_SQL_DATA_DEFINITION_MODE));
+                            }
                             break;
                         case ANALYZE_MODE:
                             exec = new CLIAnalyzerMode();
+                            if(null == modeArgs || modeArgs.length < 1) {
+                                throw new IllegalArgumentException(String.format("Missing arguments for %s mode", ExecutionModes.ANALYZE_MODE));
+                            }
                             break;
                         default:
                             throw new RuntimeException("Execution mode is invalid or not yet supported.");

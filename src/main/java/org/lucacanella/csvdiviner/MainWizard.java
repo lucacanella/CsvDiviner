@@ -52,11 +52,11 @@ public class MainWizard {
         }
     }
 
-    protected static void outFormat(String output, String ...params) {
+    protected static void outFormat(String output, Object ...params) {
         System.out.format(output, params);
     }
 
-    protected static void outFormatNL(String output, String ...params) {
+    protected static void outFormatNL(String output, Object ...params) {
         System.out.format(output, params);
         System.out.println();
     }

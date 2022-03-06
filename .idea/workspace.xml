@@ -10,18 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/ExecutionModes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/PipeInputNotSupportedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/CLIAnalyzerModeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_1.csv.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_1.csv.json.ver" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_2.csv.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_2.csv.json.ver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/CLIAnalyzerMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/CLIAnalyzerMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/CLICreateDDLMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/CLICreateDDLMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner/FieldAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/CsvDiviner/FieldAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/DataDefinitionDivinerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/DataDefinitionDivinerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/SQL/SQLDataDefinitionDiviner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/Core/DataDefinitionDiviner/SQL/SQLDataDefinitionDiviner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/DivinerCLIExecutionModeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/DivinerCLIExecutionModeInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tablediviner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tablediviner.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test-resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2037037" />
@@ -73,7 +76,12 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.lucacanella.csvdiviner.Core" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\thund\IdeaProjects\TableDiviner\test-resources" />
+      <recent name="C:\Users\thund\IdeaProjects\TableDiviner\test-files" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thund\IdeaProjects\TableDiviner\test-resources" />
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main\resources" />
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner\src\main\resources\properties" />
       <recent name="C:\Users\thund\IdeaProjects\TableDiviner" />
@@ -90,25 +98,11 @@
       <command value="mvn jar:jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainCLI analyze and gen_sql">
+  <component name="RunManager" selected="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest02">
     <configuration name="Main --version" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
       <module name="tablediviner" />
       <option name="PROGRAM_PARAMETERS" value="-v" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main --w Wizard" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainWizard" />
-      <module name="tablediviner" />
-      <option name="PROGRAM_PARAMETERS" value="-w" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -137,6 +131,20 @@
       <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
       <module name="tablediviner" />
       <option name="PROGRAM_PARAMETERS" value="--version" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCLI analyze (noargs)" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.lucacanella.csvdiviner.MainCLI" />
+      <module name="tablediviner" />
+      <option name="PROGRAM_PARAMETERS" value="analyze" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.lucacanella.csvdiviner.*" />
@@ -272,55 +280,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="tablediviner [assembly:single]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="assembly:single" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
+    <configuration name="CLIAnalyzerModeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tablediviner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CLIAnalyzerModeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="tablediviner [jar:jar]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="jar:jar" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
+    <configuration name="CLIAnalyzerModeTest.cLIAnalyzerModeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tablediviner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CLIAnalyzerModeTest" />
+      <option name="METHOD_NAME" value="cLIAnalyzerModeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CLIAnalyzerModeTest.cliAnalyzerModeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tablediviner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CLIAnalyzerModeTest" />
+      <option name="METHOD_NAME" value="cliAnalyzerModeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CLIAnalyzerModeTest.cliAnalyzerModeTest01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tablediviner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CLIAnalyzerModeTest" />
+      <option name="METHOD_NAME" value="cliAnalyzerModeTest01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CLIAnalyzerModeTest.cliAnalyzerModeTest02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tablediviner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CLIAnalyzerModeTest" />
+      <option name="METHOD_NAME" value="cliAnalyzerModeTest02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="Application.Main --version" />
@@ -330,20 +337,25 @@
       <item itemvalue="Application.MainCLI test 1 --silent" />
       <item itemvalue="Application.MainCLI test 2 small" />
       <item itemvalue="Application.MainCLI analyze and gen_sql" />
+      <item itemvalue="Application.MainCLI analyze (noargs)" />
       <item itemvalue="Application.MainCLI test 3 very small" />
       <item itemvalue="Application.MainCLI test 4  smallest" />
       <item itemvalue="Application.MainCLI gen_sql - test 1" />
       <item itemvalue="Application.MainCLI gen_sql - test 2" />
       <item itemvalue="Application.MainCLI --help-usage" />
-      <item itemvalue="Application.Main --w Wizard" />
-      <item itemvalue="Maven.tablediviner [jar:jar]" />
-      <item itemvalue="Maven.tablediviner [assembly:single]" />
+      <item itemvalue="JUnit.CLIAnalyzerModeTest" />
+      <item itemvalue="JUnit.CLIAnalyzerModeTest.cLIAnalyzerModeTest" />
+      <item itemvalue="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest" />
+      <item itemvalue="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest01" />
+      <item itemvalue="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest02" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Maven.tablediviner [assembly:single]" />
-        <item itemvalue="Maven.tablediviner [jar:jar]" />
-        <item itemvalue="Application.Main --w Wizard" />
+        <item itemvalue="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest02" />
+        <item itemvalue="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest01" />
+        <item itemvalue="JUnit.CLIAnalyzerModeTest" />
+        <item itemvalue="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest" />
+        <item itemvalue="JUnit.CLIAnalyzerModeTest.cLIAnalyzerModeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -374,6 +386,15 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.lucacanella.csvdiviner.Core.EvaluatorThread" memberName="currentRowOffset" />
@@ -383,6 +404,9 @@
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="fis2." language="JAVA" />
+      </configuration>
       <configuration name="Application">
         <watch expression="idx" language="JAVA" />
         <watch expression="rowsInBuffer" language="JAVA" />
