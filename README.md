@@ -60,3 +60,7 @@ Usage: java --jar csv-diviner.jar [options] input_file
       Number of worker threads.
       Default: 7
 ```
+
+## Compile
+
+Compile by running the "assembly:assembly" goal (`mvn assembly:assembly`).

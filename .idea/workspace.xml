@@ -10,21 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f438023a-0427-45f6-9a57-249a01823b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CLIAnalyzerModeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_1.csv.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_1.csv.json.ver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_2.csv.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-resources/analysis_test_2.csv.json.ver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/csvdiviner-1.2-beta.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/lucacanella/csvdiviner/MainWizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tablediviner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tablediviner.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +42,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -96,6 +88,10 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn jar:jar" />
+      <command value="mvn package" />
+      <command value="mvn clean" />
+      <command value="mvn assembly:single" />
+      <command value="mvn assembly:assembly" />
     </option>
   </component>
   <component name="RunManager" selected="JUnit.CLIAnalyzerModeTest.cliAnalyzerModeTest02">
